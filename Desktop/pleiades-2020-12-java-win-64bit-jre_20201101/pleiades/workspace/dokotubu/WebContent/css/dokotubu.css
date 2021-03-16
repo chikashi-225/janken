@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+p.error {
+	color: red;
+}
+
+.size {
+	font-size: 5px;
+}
