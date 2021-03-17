@@ -43,11 +43,11 @@ public class Result extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", user);
 		}else {
-			request.setAttribute("errorMasege2", "同じパスワードが存在するか、数字以外の記号が使われています");
+			request.setAttribute("errorMasege2", "同じユーザーが登録しています");
 		}
 
 		//アカウント登録画面へフォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registResult");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registResult.jsp");
 		dispatcher.forward(request, response);
 	}
 

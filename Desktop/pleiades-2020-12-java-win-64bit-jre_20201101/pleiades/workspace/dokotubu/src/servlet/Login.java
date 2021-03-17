@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
 
 		//ログイン処理
 		LoginCheckLogic lcl = new LoginCheckLogic();
-		UserCheck uc = lcl.execute();
+		UserCheck uc = lcl.execute(user);
 
 		//ログイン処理
 		if(user.getName() == uc.getName() && user.getPass() == uc.getPass()) {

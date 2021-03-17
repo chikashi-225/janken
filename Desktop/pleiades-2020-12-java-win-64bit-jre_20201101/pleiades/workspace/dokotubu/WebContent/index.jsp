@@ -13,6 +13,6 @@
 パスワード:<input type="text" name="pass"><br>
 <input type="submit" value="ログイン">
 </form>
-アカウント登録をされていない方は<a href="WEB-INF/accountRegist">こちら</a>から。
+アカウント登録をされていない方は<a href="/dokotubu/accountRegist.jsp">こちら</a>から。
 </body>
 </html>

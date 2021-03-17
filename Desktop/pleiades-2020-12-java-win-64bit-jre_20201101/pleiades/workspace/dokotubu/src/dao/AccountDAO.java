@@ -14,7 +14,7 @@ public class AccountDAO {
 	public final String DB_USER = "sa";
 	public final String DB_PASS = "";
 
-	public UserCheck findByUser() {
+	public UserCheck findByUser(User user) {
 		UserCheck uc = new UserCheck();
 		//データベース接続
 		try(Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
@@ -23,7 +23,6 @@ public class AccountDAO {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			//SQLの実行
-			User user = new User();
 			pstmt.setString(1, user.getName());
 			pstmt.setInt(2, user.getPass());
 			ResultSet rs = pstmt.executeQuery();
