@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import model.LoginCheckLogic;
 import model.User;
-import model.UserCheck;
 
 /**
  * Servlet implementation class Login
@@ -30,21 +29,22 @@ public class Login extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
-		int pass1 = Integer.parseInt(pass);
 
 		//Userインスタンス（ユーザー情報）の生成
-		User user = new User(name, pass1);
+		User user = new User(name, pass);
 
 		//ログイン処理
 		LoginCheckLogic lcl = new LoginCheckLogic();
-		UserCheck uc = lcl.execute(user);
+		User user1 = lcl.execute(user);
 
 		//ログイン処理
-		if(user.getName() == uc.getName() && user.getPass() == uc.getPass()) {
+		try{
+			if(user1.equals(user) == true) {
 			//ユーザー情報をセッションスコープに保存
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", user);
-		}else {
+			}
+		}catch(NullPointerException e) {
 			request.setAttribute("errorMesage1", "アカウントが存在しないか、ID・パスワードが違います");
 		}
 

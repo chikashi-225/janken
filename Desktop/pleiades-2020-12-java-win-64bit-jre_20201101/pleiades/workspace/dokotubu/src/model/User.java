@@ -4,16 +4,27 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 	private String name;
-	private int pass;
+	private String pass;
 
 	public User() {}
-	public User (String name, int pass) {
+	public User (String name, String pass) {
 		this.name = name;
 		this.pass = pass;
 	}
 
 	public String getName() { return name; }
-	public int getPass() { return pass; }
+	public String getPass() { return pass; }
+
+	public boolean equals(Object o) {
+		if(this == o) { return true;}
+		if(o instanceof User) {
+			User user = (User)o;
+			if(this.name.equals(user.name) && this.pass.equals(user.pass)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 
 }

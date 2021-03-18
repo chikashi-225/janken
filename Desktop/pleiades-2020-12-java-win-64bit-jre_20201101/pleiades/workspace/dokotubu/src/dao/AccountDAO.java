@@ -7,15 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.User;
-import model.UserCheck;
 
 public class AccountDAO {
 	public final String JDBC_URL = "jdbc:h2:tcp://localhost/~/dokotubu";
 	public final String DB_USER = "sa";
 	public final String DB_PASS = "";
 
-	public UserCheck findByUser(User user) {
-		UserCheck uc = new UserCheck();
+	public User findByUser(User user) {
+		User user1 = null;
 		//データベース接続
 		try(Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			//SQLの準備
@@ -24,19 +23,18 @@ public class AccountDAO {
 
 			//SQLの実行
 			pstmt.setString(1, user.getName());
-			pstmt.setInt(2, user.getPass());
+			pstmt.setString(2, user.getPass());
 			ResultSet rs = pstmt.executeQuery();
 
 			//SELECT文の結果をUserCheckインスタンスに格納
 			while(rs.next()) {
-				uc.setName(rs.getString("NAME"));
-				uc.setPass(rs.getInt("PASS"));
+				user1 = new User(rs.getString("NAME"), rs.getString("PASS"));
 			}
 		}catch(SQLException se) {
 			se.printStackTrace();
-			return uc;
+			return user1;
 		}
-		return uc;
+		return user1;
 	}
 
 	public boolean create(User user) {
@@ -48,7 +46,7 @@ public class AccountDAO {
 
 			//SQLの実行
 			pstmt.setString(1, user.getName());
-			pstmt.setInt(2, user.getPass());
+			pstmt.setString(2, user.getPass());
 			int result = pstmt.executeUpdate();
 			if(result != 1) {
 				return false;

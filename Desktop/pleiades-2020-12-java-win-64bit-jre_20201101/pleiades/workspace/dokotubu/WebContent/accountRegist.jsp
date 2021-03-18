@@ -11,7 +11,7 @@
 <h1>アカウント登録</h1>
 	<form action="/dokotubu/Result" method="post">
 		<p>ユーザーID:<input type="text" name="name"></p>
-		<p>パスワード:<input type="text" name="pass"></p>
+		<p>パスワード:<input type="password" name="pass"></p>
 		<p class="size">※パスワードは半角数字5桁</p>
 		<input type="submit" value="登録">
 	</form>

@@ -29,10 +29,9 @@ public class Result extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
-		int pass1 = Integer.parseInt(pass);
 
 		//Userインスタンスを生成
-		User user = new User(name, pass1);
+		User user = new User(name, pass);
 
 		//RegistAccountLogicを呼び出す
 		RegistAccountLogic ral = new RegistAccountLogic();
