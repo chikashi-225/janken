@@ -35,16 +35,14 @@ public class Login extends HttpServlet {
 
 		//ログイン処理
 		LoginCheckLogic lcl = new LoginCheckLogic();
-		User user1 = lcl.execute(user);
+		boolean check = lcl.execute(user);
 
 		//ログイン処理
-		try{
-			if(user1.equals(user) == true) {
-			//ユーザー情報をセッションスコープに保存
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", user);
-			}
-		}catch(NullPointerException e) {
+		if(check == true) {
+		//ユーザー情報をセッションスコープに保存
+		HttpSession session = request.getSession();
+		session.setAttribute("loginUser", user);
+		}else {
 			request.setAttribute("errorMesage1", "アカウントが存在しないか、ID・パスワードが違います");
 		}
 
