@@ -24,6 +24,7 @@
 </c:if>
 <c:forEach var="mutter" items="${mutterList }">
 	<p><c:out value="${mutter.userName }"/>:<c:out value="${mutter.text }"/></p>
+	<p><a href="/dokotubu/DokotubuIndex?action=like">good</a><c:out value="${siteEV.like }"></c:out></p>
 </c:forEach>
 </body>
 </html>
